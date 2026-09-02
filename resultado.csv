@@ -1,0 +1,11 @@
+entrada,status,cep,logradouro,bairro,localidade,uf,mensagem_erro
+01001000,sucesso,01001-000,Praça da Sé,Sé,São Paulo,SP,
+20040020,sucesso,20040-020,Praça Pio X,Centro,Rio de Janeiro,RJ,
+30130010,sucesso,30130-010,Praça Sete de Setembro,Centro,Belo Horizonte,MG,
+70150900,sucesso,70150-900,Praça dos Três Poderes,Zona Cívico-Administrativa,Brasília,DF,
+80010000,sucesso,80010-000,Rua José Loureiro,Centro,Curitiba,PR,
+ABC123,formato_invalido,,,,,,Formato de CEP inválido (esperado 8 dígitos numéricos).
+123,formato_invalido,,,,,,Formato de CEP inválido (esperado 8 dígitos numéricos).
+99999999,nao_encontrado,,,,,,CEP não encontrado na base de dados.
+01310930,sucesso,01310-930,Avenida Paulista,Bela Vista,São Paulo,SP,
+40010000,sucesso,40010-000,Avenida da França,Comércio,Salvador,BA,

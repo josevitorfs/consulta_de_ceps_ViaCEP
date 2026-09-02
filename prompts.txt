@@ -1,0 +1,528 @@
+HISTÓRICO DE USO DE IA — PROJETO DE CONSULTA DE CEPS (VIACEP)
+================================================================
+Ferramenta utilizada: Claude (Anthropic), interface de chat.
+Este arquivo contém o texto INTEGRAL e LITERAL de cada mensagem
+enviada pelo autor durante o desenvolvimento, em ordem cronológica,
+sem resumos ou paráfrases, para permitir conferência exata do
+processo real.
+
+================================================================
+MENSAGEM 1 — PROMPT INICIAL (definição de papel, tarefa e processo)
+================================================================
+
+# PAPEL
+
+Você atuará como um **Engenheiro de Software Sênior, Mentor Técnico e Revisor de Projetos de Programação**, especializado em Python, consumo de APIs REST, tratamento de erros, manipulação de dados, CSV e boas práticas de desenvolvimento.
+
+Seu papel nesta tarefa não é simplesmente gerar código.
+
+Você deve me ajudar a **entender, projetar, implementar, testar, revisar e entregar** a solução, mantendo o projeto simples, correto, profissional e compatível com os requisitos da atividade.
+
+Também deverá atuar como um **revisor de processo seletivo**, avaliando se a solução demonstra os conhecimentos que a tarefa pretende verificar.
+
+---
+
+# TAREFA
+
+Preciso desenvolver uma atividade de seleção que exige:
+
+> Escolher uma API pública e gratuita, escrever um script em Python ou JavaScript que consulte essa API para uma lista de 10 entradas e gere um CSV organizado, tratando erros de entrada inválida ou API indisponível sem interromper a execução.
+
+A entrega deve conter:
+
+1. o código;
+2. o CSV gerado;
+3. o histórico do uso de IA;
+4. documentação suficiente para demonstrar como executar e entender o projeto;
+5. um único link para acesso a todo o material.
+
+---
+
+# ABORDAGEM
+
+A solução deve ser **simples e proporcional à tarefa**.
+
+Não transforme essa atividade em um projeto excessivamente complexo.
+
+Não crie:
+
+* banco de dados;
+* interface gráfica;
+* backend desnecessário;
+* arquitetura exageradamente sofisticada;
+* Docker sem necessidade;
+* frameworks desnecessários;
+* múltiplos arquivos sem justificativa.
+
+Priorize:
+
+* clareza;
+* organização;
+* legibilidade;
+* tratamento correto de erros;
+* boas práticas;
+* facilidade de explicação;
+* aderência exata ao enunciado.
+
+---
+
+# API
+
+Como ponto de partida, considere utilizar a **ViaCEP**, por ser uma API pública e gratuita adequada ao exercício.
+
+Antes de implementar, confirme na documentação oficial:
+
+* endpoint;
+* formato das requisições;
+* estrutura da resposta;
+* comportamento para entradas inválidas;
+* comportamento para CEP inexistente;
+* possíveis erros de comunicação.
+
+Caso exista algum problema técnico ou alguma API seja mais adequada ao exercício, explique a razão antes de alterar a escolha.
+
+Não invente comportamento da API.
+
+---
+
+# PRINCÍPIO FUNDAMENTAL
+
+Quero desenvolver o projeto de forma que eu consiga **entender e explicar cada parte do código**.
+
+Portanto:
+
+* não entregue uma solução completa e complexa sem explicação;
+* prefira construir o projeto em etapas;
+* explique decisões importantes;
+* mostre o código necessário em cada etapa;
+* explique o que o código faz;
+* aponte possíveis problemas;
+* permita que eu acompanhe a evolução do projeto.
+
+Quando uma implementação puder ser feita de várias formas, escolha a alternativa mais simples e justificável para o nível da atividade.
+
+---
+
+# PROCESSO DE DESENVOLVIMENTO
+
+Siga esta sequência:
+
+## ETAPA 1 — Entendimento do requisito
+
+Primeiro transforme o enunciado em requisitos técnicos objetivos.
+
+Identifique:
+
+* entradas;
+* processamento;
+* saída;
+* erros obrigatórios;
+* critérios de sucesso;
+* artefatos necessários para entrega.
+
+Não implemente antes de termos uma definição clara do que precisa ser construído.
+
+---
+
+## ETAPA 2 — Planejamento
+
+Defina uma arquitetura mínima do projeto.
+
+Determine:
+
+* estrutura de arquivos;
+* fluxo de execução;
+* dados de entrada;
+* campos do CSV;
+* funções necessárias;
+* bibliotecas necessárias.
+
+Evite criar componentes que não tragam benefício real.
+
+---
+
+## ETAPA 3 — Entradas
+
+Precisamos consultar exatamente **10 entradas**.
+
+Monte uma estratégia de testes que inclua:
+
+* entradas válidas;
+* pelo menos uma entrada inválida;
+* pelo menos uma entrada válida no formato, mas inexistente, quando a API permitir esse cenário.
+
+Os casos de erro devem demonstrar que o programa consegue continuar executando.
+
+---
+
+## ETAPA 4 — Consulta da API
+
+Primeiro implemente e teste uma consulta individual.
+
+Depois transforme a lógica em uma função reutilizável.
+
+A função deve:
+
+* receber uma entrada;
+* validar quando apropriado;
+* realizar a requisição;
+* verificar a resposta;
+* interpretar os dados;
+* retornar um resultado padronizado;
+* lidar com erros sem derrubar o programa.
+
+---
+
+## ETAPA 5 — Tratamento DE ERROS
+
+O programa jamais deve parar porque uma das 10 entradas apresentou problema.
+
+Considere pelo menos:
+
+### Entrada inválida
+
+Exemplo conceitual:
+
+```text
+ABC123
+```
+
+### Entrada válida, mas não encontrada
+
+Quando a própria API indicar que o registro não existe.
+
+### Falha de comunicação
+
+Exemplos:
+
+* timeout;
+* erro de conexão;
+* API indisponível;
+* resposta HTTP inesperada.
+
+O erro deve ser registrado e o processamento deve continuar.
+
+Fluxo esperado:
+
+```text
+Entrada 1 → sucesso
+Entrada 2 → sucesso
+Entrada 3 → erro → continua
+Entrada 4 → sucesso
+...
+Entrada 10 → sucesso ou erro
+```
+
+---
+
+# CSV
+
+O programa deverá gerar um CSV organizado e legível.
+
+Defina as colunas com base nos dados realmente retornados pela API.
+
+Inclua também informações úteis para identificar o resultado da consulta, como:
+
+* entrada original;
+* status;
+* dados retornados;
+* mensagem de erro, quando houver.
+
+Uma entrada com erro não deve simplesmente desaparecer.
+
+Ela deve continuar registrada no CSV com seu respectivo status.
+
+---
+
+# ESTRUTURA SUGERIDA
+
+Avalie se uma estrutura semelhante a esta é suficiente:
+
+```text
+atividade-api/
+├── script.py
+├── entradas.txt
+├── resultado.csv
+├── prompts.txt
+└── README.md
+```
+
+Não trate essa estrutura como obrigatória.
+
+Modifique-a somente quando existir uma justificativa técnica.
+
+---
+
+# USO DE IA
+
+A própria atividade exige histórico do uso de IA.
+
+Portanto, durante o desenvolvimento:
+
+* registre os prompts realmente utilizados;
+* registre consultas relevantes feitas à IA;
+* não apague etapas importantes do processo;
+* mantenha um histórico cronológico;
+* documente quando a IA ajudou na implementação, depuração ou explicação.
+
+O arquivo `prompts.txt` deve representar o processo real.
+
+Não invente um histórico posteriormente como se ele tivesse ocorrido dessa forma.
+
+Quando você me sugerir um prompt para usar com outra IA, marque claramente que se trata de um **prompt sugerido para desenvolvimento**, para que eu possa registrá-lo corretamente.
+
+---
+
+# README
+
+O projeto deverá possuir documentação simples contendo:
+
+* objetivo;
+* API utilizada;
+* funcionamento;
+* tecnologias;
+* tratamento de erros;
+* estrutura dos arquivos;
+* instruções de execução;
+* exemplo de saída;
+* eventuais dependências.
+
+O README deve ser curto e profissional.
+
+Não escreva documentação desnecessariamente extensa.
+
+---
+
+# TESTES
+
+Antes de considerar o projeto concluído, crie uma estratégia de testes.
+
+Verifique pelo menos:
+
+### Teste 1
+
+Entrada válida → dados retornados corretamente.
+
+### Teste 2
+
+Entrada inválida → erro registrado e execução continua.
+
+### Teste 3
+
+Entrada inexistente → erro registrado e execução continua.
+
+### Teste 4
+
+Problema de requisição/API → programa não encerra inesperadamente.
+
+### Teste 5
+
+As 10 entradas são processadas.
+
+### Teste 6
+
+O CSV final possui os resultados das 10 entradas.
+
+---
+
+# REVISÃO DE CÓDIGO
+
+Depois da implementação, faça uma revisão como um engenheiro de software.
+
+Verifique:
+
+* clareza;
+* legibilidade;
+* nomes de variáveis;
+* organização das funções;
+* tratamento de exceções;
+* validação de entradas;
+* uso correto da API;
+* tratamento de respostas;
+* geração do CSV;
+* dependências;
+* possíveis bugs;
+* casos extremos;
+* aderência ao enunciado.
+
+Não adicione complexidade apenas para deixar o código "mais profissional".
+
+---
+
+# REVISÃO COMO RECRUTADOR
+
+Depois de finalizar, avalie o projeto como alguém responsável por uma etapa técnica de processo seletivo.
+
+Responda:
+
+* O projeto realmente atende ao enunciado?
+* O código demonstra conhecimentos relevantes?
+* O tratamento de erros foi bem implementado?
+* O projeto está organizado?
+* Existe alguma decisão que pode gerar uma impressão ruim?
+* Existe algum detalhe simples que pode elevar a qualidade da entrega?
+* O candidato conseguiria explicar o funcionamento durante uma entrevista?
+
+---
+
+# REGRAS DE COMUNICAÇÃO
+
+Se eu estiver implementando o projeto pela primeira vez:
+
+1. Não avance várias etapas de uma vez sem necessidade.
+2. Priorize explicações curtas e práticas.
+3. Quando houver código, explique as partes importantes.
+4. Não esconda decisões técnicas relevantes.
+5. Não invente resultados de execução.
+6. Diferencie claramente:
+
+   * o que foi implementado;
+   * o que precisa ser testado;
+   * o que é recomendação.
+7. Caso eu apresente um erro, diagnostique a causa antes de simplesmente substituir todo o código.
+
+---
+
+# REGRA PARA PESQUISA EXTERNA
+
+Quando uma informação depender da documentação atual da API, biblioteca ou ferramenta, consulte a fonte oficial quando possível.
+
+Não assuma que o comportamento atual de uma API é igual ao de versões antigas.
+
+Para detalhes específicos da ViaCEP, prefira a documentação oficial.
+
+---
+
+# CRITÉRIO DE CONCLUSÃO
+
+Considere a tarefa concluída somente quando:
+
+✓ exatamente 10 entradas forem processadas;
+
+✓ a API estiver sendo utilizada corretamente;
+
+✓ o programa continuar funcionando mesmo quando ocorrer erro;
+
+✓ o CSV for gerado corretamente;
+
+✓ os erros forem registrados;
+
+✓ o código estiver organizado;
+
+✓ o histórico de IA estiver documentado;
+
+✓ existir um README suficiente para reproduzir a execução;
+
+✓ todos os arquivos necessários estiverem prontos;
+
+✓ a solução estiver coerente com o enunciado;
+
+✓ eu conseguir explicar o funcionamento do projeto.
+
+---
+
+# ENTREGA FINAL
+
+Ao final, faça uma auditoria completa.
+
+Apresente:
+
+## 1. Checklist do requisito
+
+Mostre cada requisito do enunciado e como ele foi atendido.
+
+## 2. Estrutura final
+
+Mostre todos os arquivos que devem ser entregues.
+
+## 3. Código final
+
+Apresente o código completo e revisado.
+
+## 4. README final
+
+Apresente a versão final da documentação.
+
+## 5. Histórico de IA
+
+Explique o que deve constar no arquivo de histórico.
+
+## 6. Testes
+
+Liste os testes realizados e os resultados esperados/obtidos, deixando claro quando algo ainda precisa ser executado.
+
+## 7. Revisão final
+
+Dê uma avaliação de 0 a 10 para:
+
+* Correção
+* Clareza
+* Tratamento de erros
+* Organização
+* Qualidade técnica
+* Aderência ao enunciado
+* Qualidade da entrega
+
+Depois informe objetivamente o que ainda precisa ser corrigido antes do envio.
+
+---
+
+# REGRA FINAL
+
+Não tente impressionar pelo tamanho ou pela complexidade da solução.
+
+Quero uma solução **simples, correta, explicável, bem documentada e profissional**, que cumpra exatamente o que foi solicitado e demonstre bom domínio dos fundamentos envolvidos.
+
+================================================================
+MENSAGEM 2
+================================================================
+
+etapa 1 checkada e revisada, podemos prosseguir para etapa 2... antes de começar a proxima resposta sobre a etapa 2, revise o que foi estabelecido na etapa um para não perder contexto
+
+================================================================
+MENSAGEM 3
+================================================================
+
+perfeito, de acordo... recontextualiza as etapas 1 e 2 e pode seguir para a etapa 3
+
+================================================================
+MENSAGEM 4
+================================================================
+
+perfeito, de acordo... recontextualiza 1 2 e 3 e poode seguir para a etapa 4
+
+================================================================
+MENSAGEM 5
+================================================================
+
+sim funciona perfeitamente... pode executar a etapa 4 por completo
+
+================================================================
+MENSAGEM 6
+================================================================
+
+execute por fim a etapa 5... antes contextualizando todas as anteriores
+
+================================================================
+MENSAGEM 7
+================================================================
+
+realizei os testes e eles seguem as respectivas respostas esperadas, dessa forma é possivel finalizar o programa integrando o ler_entradas com o gerar_csv e a main
+
+================================================================
+MENSAGEM 8
+================================================================
+
+rodei o codigo e confirmei que os resultados batem.
+
+Preciso que agora você construa o readme explicando a execução desse codigo pra que possa ser rodado em outra maquina.
+
+================================================================
+FIM DO HISTÓRICO (até o momento desta geração)
+================================================================
+Observação: as respostas completas da IA para cada uma dessas
+mensagens (explicações, código gerado, arquivos criados) estão
+registradas no próprio histórico da conversa e nos arquivos entregues
+(script.py, README.md, tecnicas-engenharia-prompt.md). Este arquivo
+documenta o lado das mensagens enviadas pelo autor, conforme
+solicitado, para permitir conferência exata do processo.
